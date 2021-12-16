@@ -1,0 +1,92 @@
+
+
+@extends('layouts.login')
+@section('title','signup')
+@section('content')
+    <section class="flexbox-container">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="col-md-4 col-10 box-shadow-2 p-0">
+                <div class="card border-grey border-lighten-3 m-0">
+                    <div class="card-header border-0">
+                        <div class="card-title text-center">
+                            <div class="p-1">
+                                <img src="./public/assets/admin/images/logo/logo.png" alt="LOGO"/>
+                            </div>
+                        </div>
+                        <h3 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+                            <span>Add Admin</span>
+                        </h3>
+                    </div>
+                    {{-- @include('admin.includes.alerts.errors') --}}
+                    {{-- @include('admin.includes.alerts.success') --}}
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form-horizontal form-simple" action="{{route('insert.admin')}}" method="post"
+                                  novalidate>
+                                @csrf
+                                <input type="number" name="active" value=0 hidden >
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <input type="text" name="name" class="form-control form-control-lg input-lg"
+                                           value="{{old('name')}}" id="email" placeholder=" Name">
+                                        @if($errors->has('name'))
+                                            <div class="error alert-danger">{{ $errors->first('name') }}</div>
+                                        @endif
+                                    <div class="form-control-position">
+                                        <i class="ft-user"></i>
+                                    </div>
+{{--                                    @error('email')--}}
+{{--                                    <span class="text-danger">{{$message}}</span>--}}
+{{--                                    @enderror--}}
+
+                                </fieldset>
+
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <input type="text" name="phone" class="form-control form-control-lg input-lg"
+                                           value="{{old('phone')}}" id="phone" placeholder="phone numder">
+                                           @if($errors->has('phone'))
+                                             <div class="error alert-danger">{{ $errors->first('phone') }}</div>
+                                          @endif
+
+                                    <div class="form-control-position">
+                                        <i class="ft-user"></i>
+                                    </div>
+{{--                                    @error('email')--}}
+{{--                                    <span class="text-danger">{{$message}}</span>--}}
+{{--                                    @enderror--}}
+
+                                </fieldset>
+                                <fieldset class="form-group position-relative has-icon-left">
+                                    <input type="password" name="password" class="form-control form-control-lg input-lg"
+                                           id="user-password"
+                                           placeholder="Insert password">
+                                           @if($errors->has('password'))
+                                             <div class="error alert-danger">{{ $errors->first('password') }}</div>
+                                          @endif
+
+                                    <div class="form-control-position">
+                                        <i class="la la-key"></i>
+                                    </div>
+{{--                                    @error('password')--}}
+{{--                                    <span class="text-danger">{{$message}}</span>--}}
+{{--                                    @enderror--}}
+                                </fieldset>
+                                <div class="form-group row">
+                                    <div class="col-md-6 col-12 text-center text-md-left">
+                                        <fieldset>
+                                            <input type="checkbox" name="remember_me" id="remember-me"
+                                                   class="chk-remember">
+                                            <label for="remember-me">Remember my</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i>
+                                    Sign Up
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
